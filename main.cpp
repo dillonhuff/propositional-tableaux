@@ -2,6 +2,7 @@
 #include <map>
 
 #include "Formula.h"
+#include "Negation.h"
 #include "SATResult.h"
 #include "TableauxSAT.h"
 #include "Variable.h"
@@ -27,7 +28,7 @@ void testTableauxSATAssignment(Formula* f, SATResult* expectedResult, string tes
   return;
 }
 
-void singleVariableTableaux()
+void singleVariable()
 {
   Formula x = Variable("x");
   SATResult satAsg = SATResult();
@@ -36,9 +37,15 @@ void singleVariableTableaux()
   return;
 }
 
+void negatedVariable()
+{
+  Variable x = Variable("x");
+  Formula negX = Negation(&x);
+}
+
 int main(int argv, char** argc)
 {
   cout << "Running all tests\n";
-  singleVariableTableaux();
+  singleVariable();
   return 0;
 }

@@ -34,18 +34,21 @@ void singleVariable()
   SATResult satAsg = SATResult();
   satAsg.AddAssignment((Variable*) &x, true);
   testTableauxSATAssignment(&x, &satAsg, "single variable");
-  return;
 }
 
 void negatedVariable()
 {
   Variable x = Variable("x");
   Formula negX = Negation(&x);
+  SATResult satAsg = SATResult();
+  satAsg.AddAssignment(&x, false);
+  testTableauxSATAssignment(&negX, &satAsg, "negated variable");
 }
 
 int main(int argv, char** argc)
 {
   cout << "Running all tests\n";
   singleVariable();
+  negatedVariable();
   return 0;
 }

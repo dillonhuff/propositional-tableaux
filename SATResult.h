@@ -1,6 +1,8 @@
 #ifndef _SAT_RESULT_H_
 #define _SAT_RESULT_H_
 
+#include <map>
+
 #include "Variable.h"
 
 enum AddAssignmentResult {
@@ -9,7 +11,14 @@ enum AddAssignmentResult {
 
 class SATResult
 {
+ private:
+  bool m_isUnsat;
+  map<Variable*, bool>* m_truthAssignment;
+
  public:
+  SATResult();
+  ~SATResult();
+  bool operator==(SATResult* other);
   AddAssignmentResult AddAssignment(Variable* v, bool truthVal);
 };
 

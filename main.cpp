@@ -11,18 +11,20 @@ using namespace std;
 void testResult(bool condition, string testName, string errorMessage)
 {
   if (!condition) {
-    cout << "ERROR in " << testName << errorMessage << endl;
+    cout << "ERROR in " << testName << ": " << errorMessage << endl;
   } else {
     cout << testName << " passed" << endl;
   }
   return;
 }
 
-void testTableauxSATAssignment(Formula* f, SATResult* expectedResult)
+void testTableauxSATAssignment(Formula* f, SATResult* expectedResult, string testName)
 {
-  SATResult actualResult;
+  SATResult actualResult = SATResult();
   TableauxSAT tSAT;
-  tSAT.checkSAT(f, actualResult);
+  tSAT.CheckSAT(f, &actualResult);
+  testResult(actualResult == expectedResult, testName, "unexpected SAT result");
+  return;
 }
 
 void singleVariableTableaux()
@@ -30,7 +32,7 @@ void singleVariableTableaux()
   Formula x = Variable("x");
   SATResult satAsg = SATResult();
   satAsg.AddAssignment((Variable*) &x, true);
-  testTableauxSATAssignment(&x, &satAsg);
+  testTableauxSATAssignment(&x, &satAsg, "single variable");
   return;
 }
 

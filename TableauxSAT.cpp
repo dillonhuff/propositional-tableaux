@@ -1,8 +1,11 @@
+#include "SATResultFactory.h"
 #include "TableauxSAT.h"
 
-void TableauxSAT::CheckSAT(Formula* f, SATResult* res)
+SATResult* TableauxSAT::CheckSAT(Formula* f)
 {
-  Variable* v = (Variable*) f;
-  res->AddAssignment(v, true);
-  return;
+  SATResult* res = satResFactory->MakeSATResult();
+  res->AddAssignment((Variable*) f, true);
+  return res;
 }
+
+

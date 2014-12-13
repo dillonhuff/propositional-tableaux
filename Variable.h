@@ -10,9 +10,10 @@ using namespace std;
 class Variable : public Formula
 {
  private:
-  string m_name;
+  string* m_name;
  public:
   Variable(string name);
+  ~Variable();
 };
 
 #endif

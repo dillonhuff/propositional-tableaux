@@ -1,5 +1,7 @@
 #include "FormulaFactory.h"
 
+FormulaFactory* formulaFactory;
+
 Variable* FormulaFactory::MakeVariable(string name)
 {
   Variable* newVar = new Variable(name);

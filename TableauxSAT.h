@@ -7,7 +7,7 @@
 class TableauxSAT
 {
  public:
-  void CheckSAT(Formula* f, SATResult* res);
+  SATResult* CheckSAT(Formula* f);
 };
 
 #endif

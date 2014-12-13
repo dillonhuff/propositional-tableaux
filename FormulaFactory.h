@@ -12,6 +12,7 @@ class FormulaFactory
 {
  private:
   vector<Formula*>* m_allFormulas;
+
  public:
   static FormulaFactory* MakeFormulaFactory();
   static void TearDownFormulaFactory(FormulaFactory* ff);
@@ -20,5 +21,7 @@ class FormulaFactory
   Negation* MakeNegation(Formula* f);
   
 };
+
+extern FormulaFactory* formulaFactory;
 
 #endif

@@ -5,8 +5,15 @@
 
 class Negation : public Formula
 {
+ private:
+  Formula* m_innerFormula;
+
  public:
   Negation(Formula* f);
+
+  virtual bool IsNegation();
+
+  Formula* InnerFormula();
 };
 
 #endif

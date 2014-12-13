@@ -9,3 +9,8 @@ Variable::~Variable()
 {
   delete m_name;
 }
+
+bool Variable::IsVariable()
+{
+  return true;
+}

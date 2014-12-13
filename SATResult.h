@@ -18,7 +18,7 @@ class SATResult
  public:
   SATResult();
   ~SATResult();
-  bool operator==(SATResult* other);
+  const bool Equals(const SATResult* other);
   AddAssignmentResult AddAssignment(Variable* v, bool truthVal);
 };
 

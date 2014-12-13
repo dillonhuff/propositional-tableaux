@@ -3,6 +3,10 @@
 
 class Formula
 {
+ public:
+  virtual bool IsNegation();
+  virtual bool IsVariable();
+  virtual ~Formula();
 };
 
 #endif

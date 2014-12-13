@@ -25,7 +25,7 @@ void testTableauxSATAssignment(Formula* f, SATResult* expectedResult, string tes
 {
   TableauxSAT tSAT;
   SATResult* actualResult = tSAT.CheckSAT(f);
-  testResult(actualResult == expectedResult, testName, "unexpected SAT result");
+  testResult(actualResult->Equals(expectedResult), testName, "unexpected SAT result");
 }
 
 void singleVariable()

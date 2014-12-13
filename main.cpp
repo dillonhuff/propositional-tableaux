@@ -2,12 +2,15 @@
 #include <map>
 
 #include "Formula.h"
+#include "FormulaFactory.h"
 #include "Negation.h"
 #include "SATResult.h"
 #include "TableauxSAT.h"
 #include "Variable.h"
 
 using namespace std;
+
+FormulaFactory *formulaFactory;
 
 void testResult(bool condition, string testName, string errorMessage)
 {
@@ -30,25 +33,27 @@ void testTableauxSATAssignment(Formula* f, SATResult* expectedResult, string tes
 
 void singleVariable()
 {
-  Formula x = Variable("x");
+  Formula* x = formulaFactory->MakeVariable("x");
   SATResult satAsg = SATResult();
-  satAsg.AddAssignment((Variable*) &x, true);
-  testTableauxSATAssignment(&x, &satAsg, "single variable");
+  satAsg.AddAssignment((Variable*) x, true);
+  testTableauxSATAssignment(x, &satAsg, "single variable");
 }
 
 void negatedVariable()
 {
-  Variable x = Variable("x");
-  Formula negX = Negation(&x);
+  Variable* x = formulaFactory->MakeVariable("x");
+  Formula* negX = formulaFactory->MakeNegation(x);
   SATResult satAsg = SATResult();
-  satAsg.AddAssignment(&x, false);
-  testTableauxSATAssignment(&negX, &satAsg, "negated variable");
+  satAsg.AddAssignment(x, false);
+  testTableauxSATAssignment(negX, &satAsg, "negated variable");
 }
 
 int main(int argv, char** argc)
 {
   cout << "Running all tests\n";
+  formulaFactory = FormulaFactory::MakeFormulaFactory();
   singleVariable();
   negatedVariable();
+  FormulaFactory::TearDownFormulaFactory(formulaFactory);
   return 0;
 }

@@ -1,7 +1,7 @@
 # indicate where the object files are to be created
 CC         := g++
 LINKER     := $(CC)
-CFLAGS	   := -g -Wall
+CFLAGS	   := -g -std=c++11 -Wall
 
 HEADERS :=  $(shell find -type f -name '*.h')
 SOURCES :=  $(shell find -type f -name '*.cpp')

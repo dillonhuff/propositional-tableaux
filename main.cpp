@@ -46,6 +46,17 @@ void negatedVariable()
   testTableauxSATAssignment(negX, satAsg, "negated variable");
 }
 
+void unSATNegation()
+{
+  Variable* x = formulaFactory->MakeVariable("x");
+  Negation* notX = formulaFactory->MakeNegation(x);
+  Negation* notX2 = formulaFactory->MakeNegation(x);
+  Negation* notNotX = formulaFactory->MakeNegation(notX2);
+  Conjunction* unsat = formulaFactory->MakeConjunction(notNotX, notX);
+  SATResult* satAsg = satResFactory->MakeUnSATResult();
+  testTableauxSATAssignment(unsat, satAsg, "not x and not not x");
+}
+
 void oneUnSATConjunction()
 {
   Variable* x = formulaFactory->MakeVariable("x");
@@ -86,6 +97,7 @@ int main(int argv, char** argc)
   cout << "* Running all tests..." << endl;
   singleVariable();
   negatedVariable();
+  unSATNegation();
   oneUnSATConjunction();
   oneSATConjunction();
   oneSATDisjunction();

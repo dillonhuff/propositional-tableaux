@@ -25,6 +25,11 @@ bool SATResult::Equals(const SATResult* other)
   return this->m_isUnsat == other->m_isUnsat;
 }
 
+bool SATResult::TruthValue(Formula* f)
+{
+  return m_truthAssignment->find(f)->second;
+}
+
 bool SATResult::SameAssignment(const SATResult* other)
 {
   if (this->m_isUnsat != other->m_isUnsat) {

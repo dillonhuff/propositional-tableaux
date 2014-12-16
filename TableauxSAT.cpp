@@ -9,8 +9,14 @@
 
 void TableauxSAT::NegationSAT(Negation* neg)
 {
-  Formula* innerF = neg->InnerFormula(); 
-  AddAssignmentResult res = m_satRes->AddAssignment(innerF, false);
+  Formula* innerF = neg->InnerFormula();
+  AddAssignmentResult res;
+  if (m_satRes->TruthValue(innerF) == true) {
+    res = m_satRes->AddAssignment(innerF, false);
+  } else {
+    res = m_satRes->AddAssignment(innerF, true);
+  }
+
   if (res == UNSAT) {
     return;
   }

@@ -21,6 +21,7 @@ class SATResult
 
   bool Equals(const SATResult* other);
   bool SameAssignment(const SATResult* other);
+  bool TruthValue(Formula* f);
   AddAssignmentResult AddAssignment(Formula* f, bool truthVal);
 };
 

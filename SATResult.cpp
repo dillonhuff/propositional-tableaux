@@ -25,11 +25,6 @@ bool SATResult::Equals(const SATResult* other)
   return this->m_isUnsat == other->m_isUnsat;
 }
 
-bool SATResult::TruthValue(Formula* f)
-{
-  return m_truthAssignment->find(f)->second;
-}
-
 bool SATResult::SameAssignment(const SATResult* other)
 {
   if (this->m_isUnsat != other->m_isUnsat) {
@@ -43,6 +38,22 @@ bool SATResult::SameAssignment(const SATResult* other)
     && std::equal(thisTA->begin(), thisTA->end(), otherTA->begin());
 }
 
+bool SATResult::TruthValue(Formula* f)
+{
+  return m_truthAssignment->find(f)->second;
+}
+
+bool SATResult::IsSAT()
+{
+  return !m_isUnsat;
+}
+
+unsigned int SATResult::Size()
+{
+  return m_truthAssignment->size();
+}
+
+
 AddAssignmentResult SATResult::AddAssignment(Formula* f, bool truthVal)
 {
   if (m_truthAssignment->count(f) > 0) {
@@ -54,4 +65,9 @@ AddAssignmentResult SATResult::AddAssignment(Formula* f, bool truthVal)
   }
   (*m_truthAssignment)[f] = truthVal;
   return SAT;
+}
+
+void SATResult::RemoveAssignment(Formula* f)
+{
+  m_truthAssignment->erase(f);
 }

@@ -18,11 +18,16 @@ void TableauxSAT::NegationSAT(Negation* neg)
   }
 
   if (res == UNSAT) {
+    m_satRes->RemoveAssignment(innerF);
     return;
   }
 
   m_remainingFormulas->AddFormula(innerF);
   RecursiveCheckSAT();
+
+  if (!m_satRes->IsSAT()) {
+    m_satRes->RemoveAssignment(innerF);
+  }
 }
 
 void TableauxSAT::ConjunctionSAT(Conjunction* conj)
@@ -32,17 +37,25 @@ void TableauxSAT::ConjunctionSAT(Conjunction* conj)
 
   AddAssignmentResult leftRes = m_satRes->AddAssignment(left, true);
   if (leftRes == UNSAT) {
+    m_satRes->RemoveAssignment(left);
     return;
   }
 
   AddAssignmentResult rightRes = m_satRes->AddAssignment(right, true);
   if (rightRes == UNSAT) {
+    m_satRes->RemoveAssignment(right);
     return;
   }
 
   m_remainingFormulas->AddFormula(left);
   m_remainingFormulas->AddFormula(right);
+
   RecursiveCheckSAT();
+
+  if (!m_satRes->IsSAT()) {
+    m_satRes->RemoveAssignment(right);
+    m_satRes->RemoveAssignment(left);
+  }
 }
 
 void TableauxSAT::RecursiveCheckSAT()
@@ -74,10 +87,13 @@ SATResult* TableauxSAT::CheckSAT(Formula* f)
 
   RecursiveCheckSAT();
 
+  if (!m_satRes->IsSAT()) {
+    m_satRes->RemoveAssignment(f);
+    assert(m_satRes->Size() == 0);
+  }
+
   assert(m_remainingFormulas->Size() == 0);
   delete m_remainingFormulas;
 
   return m_satRes;
 }
-
-

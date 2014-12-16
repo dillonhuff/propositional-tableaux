@@ -22,7 +22,11 @@ class SATResult
   bool Equals(const SATResult* other);
   bool SameAssignment(const SATResult* other);
   bool TruthValue(Formula* f);
+  bool IsSAT();
+  unsigned int Size();
+
   AddAssignmentResult AddAssignment(Formula* f, bool truthVal);
+  void RemoveAssignment(Formula* f);
 };
 
 #endif

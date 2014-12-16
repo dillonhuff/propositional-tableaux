@@ -1,17 +1,18 @@
-# indicate where the object files are to be created
-CC         := g++
-LINKER     := $(CC)
-CFLAGS	   := -g -std=c++11 -Wall
+CC	:= g++
+LINKER	:= $(CC)
+CFLAGS	:= -g -O3 -std=c++11 -Wall
 
-HEADERS :=  $(shell find -type f -name '*.h')
-SOURCES :=  $(shell find -type f -name '*.cpp')
-OBJS := $(patsubst src/%.cpp, obj/%.o, $(SOURCES))
+HEADERS	:= $(shell find ./ -type f -name '*.h')
+SOURCES	:= $(shell find ./ -type f -name '*.cpp')
+OBJECTS	:= $(patsubst %.cpp, %.o, $(SOURCES))
 
-all: tests.x
+# Compile cpp sourece files to object files
+%.o: %.cpp $(HEADERS)
+	$(CC) $(CFLAGS) -c $< -o $@
 
-tests.x:	$(OBJS) $(HEADERS)
-		$(LINKER) $(CFLAGS) $(OBJS) -o $@
+tests.x: $(OBJECTS) $(HEADERS)
+	$(LINKER) $(CFLAGS) $(OBJECTS) -o $@
 
 clean:
 	rm -f *.o
-	rm -f tests.x
+	rm -f *.x

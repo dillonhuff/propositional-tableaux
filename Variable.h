@@ -1,11 +1,11 @@
 #ifndef _VARIABLE_H_
 #define _VARIABLE_H_
 
-using namespace std;
-
 #include <string>
 
 #include "Formula.h"
+
+using namespace std;
 
 class Variable : public Formula
 {

@@ -8,6 +8,10 @@
 
 class TableauxSAT
 {
+ private:
+  SATResult* m_satRes;
+  void RecursiveCheckSAT(Formula* f);
+
  public:
   SATResult* CheckSAT(Formula* f);
 };

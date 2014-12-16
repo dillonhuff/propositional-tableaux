@@ -12,6 +12,7 @@ class SATResultFactory
 
  public:
   SATResult* MakeSATResult();
+  SATResult* MakeUnSATResult();
 
   static SATResultFactory* MakeSATResultFactory();
   static void TearDownSATResultFactory(SATResultFactory* srf);

@@ -16,6 +16,13 @@ Negation* FormulaFactory::MakeNegation(Formula* f)
   return newNeg;
 }
 
+Conjunction* FormulaFactory::MakeConjunction(Formula* left, Formula* right)
+{
+  Conjunction* newConj = new Conjunction(left, right);
+  m_allFormulas->push_back(newConj);
+  return newConj;
+}
+
 FormulaFactory* FormulaFactory::MakeFormulaFactory()
 {
   FormulaFactory* newFF = new FormulaFactory();

@@ -4,6 +4,7 @@
 class Formula
 {
  public:
+  virtual bool IsConjunction();
   virtual bool IsNegation();
   virtual bool IsVariable();
   virtual ~Formula();

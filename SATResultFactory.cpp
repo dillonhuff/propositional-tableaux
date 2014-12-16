@@ -4,9 +4,16 @@ SATResultFactory* satResFactory;
 
 SATResult* SATResultFactory::MakeSATResult()
 {
-  SATResult* newRes = new SATResult();
+  SATResult* newRes = new SATResult(SAT);
   m_allSATResults->push_back(newRes);
   return newRes;
+}
+
+SATResult* SATResultFactory::MakeUnSATResult()
+{
+  SATResult* newUnSATRes = new SATResult(UNSAT);
+  m_allSATResults->push_back(newUnSATRes);
+  return newUnSATRes;
 }
 
 SATResultFactory* SATResultFactory::MakeSATResultFactory()

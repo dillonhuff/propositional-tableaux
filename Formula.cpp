@@ -1,5 +1,10 @@
 #include "Formula.h"
 
+bool Formula::IsConjunction()
+{
+  return false;
+}
+
 bool Formula::IsNegation()
 {
   return false;

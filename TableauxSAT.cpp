@@ -1,20 +1,32 @@
 #include <assert.h>
 
+#include "Conjunction.h"
 #include "Negation.h"
 #include "SATResultFactory.h"
+#include "Variable.h"
 #include "TableauxSAT.h"
 
-SATResult* TableauxSAT::CheckSAT(Formula* f)
+void TableauxSAT::RecursiveCheckSAT(Formula* f)
 {
-  SATResult* res = satResFactory->MakeSATResult();
   if (f->IsVariable()) {
-    res->AddAssignment((Variable*) f, true);
+    m_satRes->AddAssignment((Variable*) f, true);
   } else if (f->IsNegation()) {
     Negation* negF = (Negation*) f;
     assert(negF->InnerFormula()->IsVariable());
-    res->AddAssignment((Variable*) negF->InnerFormula(), false);
+    m_satRes->AddAssignment((Variable*) negF->InnerFormula(), false);
+  } else if (f->IsConjunction()) {
+    Conjunction* conj = (Conjunction*) f;
+    Formula* left = conj->Left();
+    Formula* right = conj->Right();
+    //    RecursiveCheckSAT
   }
-  return res;
+}
+
+SATResult* TableauxSAT::CheckSAT(Formula* f)
+{
+  m_satRes = satResFactory->MakeSATResult();
+  RecursiveCheckSAT(f);
+  return m_satRes;
 }
 
 

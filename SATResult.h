@@ -6,8 +6,8 @@
 #include "Variable.h"
 
 enum AddAssignmentResult {
-  NO_CONFLICT = 1,
-  ASSIGNMENT_CONFLICT };
+  SAT = 1,
+  UNSAT };
 
 class SATResult
 {
@@ -16,7 +16,7 @@ class SATResult
   map<Variable*, bool>* m_truthAssignment;
 
  public:
-  SATResult();
+  SATResult(AddAssignmentResult res);
   ~SATResult();
   const bool Equals(const SATResult* other);
   AddAssignmentResult AddAssignment(Variable* v, bool truthVal);

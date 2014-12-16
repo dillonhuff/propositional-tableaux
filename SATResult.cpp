@@ -1,9 +1,17 @@
+#include <iostream>
+
 #include "SATResult.h"
 #include "Variable.h"
 
-SATResult::SATResult()
+SATResult::SATResult(AddAssignmentResult res)
 {
-  m_isUnsat = false;
+  if (res == SAT) {
+    m_isUnsat = false;
+  } else if (res == UNSAT) {
+    m_isUnsat = true;
+  } else {
+    cout << "ERROR: Unsupported AddAssignmentResult in SATResult::SATResult" << endl;
+  }
   m_truthAssignment = new map<Variable*, bool>();
 }
 
@@ -31,9 +39,9 @@ AddAssignmentResult SATResult::AddAssignment(Variable* v, bool truthVal)
     bool currentTruthVal = m_truthAssignment->find(v)->second;
     if (currentTruthVal != truthVal) {
       m_isUnsat = true;
-      return ASSIGNMENT_CONFLICT;
+      return UNSAT;
     }
   }
   (*m_truthAssignment)[v] = truthVal;
-  return NO_CONFLICT;
+  return SAT;
 }

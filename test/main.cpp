@@ -1,15 +1,8 @@
 #include <iostream>
-#include <map>
 
 #include "BasicSATTests.h"
-#include "Formula.h"
 #include "FormulaFactory.h"
-#include "Negation.h"
-#include "SATResult.h"
 #include "SATResultFactory.h"
-#include "TableauxSAT.h"
-#include "Variable.h"
-
 
 int main(int argv, char** argc)
 {

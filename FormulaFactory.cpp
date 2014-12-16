@@ -23,6 +23,13 @@ Conjunction* FormulaFactory::MakeConjunction(Formula* left, Formula* right)
   return newConj;
 }
 
+Disjunction* FormulaFactory::MakeDisjunction(Formula* left, Formula* right)
+{
+  Disjunction* newDis = new Disjunction(left, right);
+  m_allFormulas->push_back(newDis);
+  return newDis;
+}
+
 FormulaFactory* FormulaFactory::MakeFormulaFactory()
 {
   FormulaFactory* newFF = new FormulaFactory();

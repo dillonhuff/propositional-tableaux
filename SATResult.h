@@ -18,7 +18,9 @@ class SATResult
  public:
   SATResult(AddAssignmentResult res);
   ~SATResult();
-  const bool Equals(const SATResult* other);
+
+  bool Equals(const SATResult* other);
+  bool SameAssignment(const SATResult* other);
   AddAssignmentResult AddAssignment(Formula* f, bool truthVal);
 };
 

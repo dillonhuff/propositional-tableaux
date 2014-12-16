@@ -20,7 +20,12 @@ SATResult::~SATResult()
   delete m_truthAssignment;
 }
 
-const bool SATResult::Equals(const SATResult* other)
+bool SATResult::Equals(const SATResult* other)
+{
+  return this->m_isUnsat == other->m_isUnsat;
+}
+
+bool SATResult::SameAssignment(const SATResult* other)
 {
   if (this->m_isUnsat != other->m_isUnsat) {
     return false;

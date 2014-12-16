@@ -1,21 +1,14 @@
 #ifndef _CONJUNCTION_H_
 #define _CONJUNCTION_H_
 
-#include "Formula.h"
+#include "BinaryConnective.h"
 
-class Conjunction : public Formula
+class Conjunction : public BinaryConnective
 {
- private:
-  Formula* m_left;
-  Formula* m_right;
-
  public:
   Conjunction(Formula* left, Formula* right);
 
   virtual bool IsConjunction();
-
-  Formula* Left();
-  Formula* Right();
 };
 
 #endif

@@ -55,6 +55,27 @@ void oneUnSATConjunction()
   testTableauxSATAssignment(xAndNotX, satAsg, "one unsat conjunction");
 }
 
+void oneSATConjunction()
+{
+  Variable* x = formulaFactory->MakeVariable("x");
+  Conjunction* xAndX = formulaFactory->MakeConjunction(x, x);
+  SATResult* satAsg = satResFactory->MakeSATResult();
+  satAsg->AddAssignment(xAndX, true);
+  satAsg->AddAssignment(x, true);
+  testTableauxSATAssignment(xAndX, satAsg, "one sat conjunction");
+}
+
+void oneSATDisjunction()
+{
+  Variable* x = formulaFactory->MakeVariable("x");
+  Variable* y = formulaFactory->MakeVariable("y");
+  Disjunction* xOrY = formulaFactory->MakeDisjunction(x, y);
+  SATResult* satAsg = satResFactory->MakeSATResult();
+  satAsg->AddAssignment(x, true);
+  satAsg->AddAssignment(xOrY, true);
+  testTableauxSATAssignment(xOrY, satAsg, "one sat disjunction");
+}
+
 int main(int argv, char** argc)
 {
   cout << "Starting setup..." << endl;
@@ -66,6 +87,8 @@ int main(int argv, char** argc)
   singleVariable();
   negatedVariable();
   oneUnSATConjunction();
+  oneSATConjunction();
+  oneSATDisjunction();
   cout << "* Done with tests" << endl;
 
   cout << "\nStarting teardown..." << endl;

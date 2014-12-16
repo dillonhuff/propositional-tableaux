@@ -30,7 +30,7 @@ void TableauxSAT::NegationSAT(Negation* neg)
   }
 }
 
-void TableauxSAT::ConjunctionSAT(Conjunction* conj)
+void TableauxSAT::TrueConjunction(Conjunction* conj)
 {
   Formula* left = conj->Left();
   Formula* right = conj->Right();
@@ -53,8 +53,51 @@ void TableauxSAT::ConjunctionSAT(Conjunction* conj)
   RecursiveCheckSAT();
 
   if (!m_satRes->IsSAT()) {
-    m_satRes->RemoveAssignment(right);
     m_satRes->RemoveAssignment(left);
+    m_satRes->RemoveAssignment(right);
+  }
+}
+
+void TableauxSAT::FalseConjunction(Conjunction* conj)
+{
+  Formula* left = conj->Left();
+  Formula* right = conj->Right();
+
+  AddAssignmentResult leftRes = m_satRes->AddAssignment(left, false);
+  if (leftRes == UNSAT) {
+    m_satRes->RemoveAssignment(left);
+    return;
+  }
+
+  RecursiveCheckSAT();
+
+  if (m_satRes->IsSAT()) {
+    return;
+  }
+
+  m_satRes->RemoveAssignment(left);
+
+  AddAssignmentResult rightRes = m_satRes->AddAssignment(right, false);
+  if (rightRes == UNSAT) {
+    m_satRes->RemoveAssignment(right);
+    return;
+  }
+
+  RecursiveCheckSAT();
+
+  if (m_satRes->IsSAT()) {
+    return;
+  }
+
+  m_satRes->RemoveAssignment(right);
+}
+
+void TableauxSAT::ConjunctionSAT(Conjunction* conj)
+{
+  if (m_satRes->TruthValue(conj) == true) {
+    TrueConjunction(conj);
+  } else {
+    FalseConjunction(conj);
   }
 }
 

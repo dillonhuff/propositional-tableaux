@@ -75,6 +75,16 @@ void oneSATConjunction()
   testTableauxSATAssignment(xAndX, satAsg, "one sat conjunction");
 }
 
+void negationNestedConjunction()
+{
+  Variable* x = formulaFactory->MakeVariable("x");
+  Negation* notX = formulaFactory->MakeNegation(x);
+  Conjunction* xAndNotX = formulaFactory->MakeConjunction(x, notX);
+  Negation* notXAndNotX = formulaFactory->MakeNegation(xAndNotX);
+  SATResult* satAsg = satResFactory->MakeSATResult();
+  testTableauxSATAssignment(notXAndNotX, satAsg, "negation nested conjunction");
+}
+
 void oneSATDisjunction()
 {
   Variable* x = formulaFactory->MakeVariable("x");
@@ -92,6 +102,7 @@ void basicSATTests()
   negatedVariable();
   unSATNegation();
   oneUnSATConjunction();
+  negationNestedConjunction();
   oneSATConjunction();
   oneSATDisjunction();
 }

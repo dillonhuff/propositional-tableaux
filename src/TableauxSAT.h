@@ -14,6 +14,8 @@ class TableauxSAT
   TableauxFormulas* m_remainingFormulas;
 
   void NegationSAT(Negation* neg);
+  void TrueConjunction(Conjunction* conj);
+  void FalseConjunction(Conjunction* conj);
   void ConjunctionSAT(Conjunction* conj);
   void RecursiveCheckSAT();
 

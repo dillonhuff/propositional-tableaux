@@ -87,26 +87,12 @@ void oneSATDisjunction()
   testTableauxSATAssignment(xOrY, satAsg, "one sat disjunction");
 }
 
-int main(int argv, char** argc)
+void basicSATTests()
 {
-  cout << "Starting setup..." << endl;
-  formulaFactory = FormulaFactory::MakeFormulaFactory();
-  satResFactory = SATResultFactory::MakeSATResultFactory();
-  cout << "Done with setup\n" << endl;
-
-  cout << "* Running all tests..." << endl;
   singleVariable();
   negatedVariable();
   unSATNegation();
   oneUnSATConjunction();
   oneSATConjunction();
   oneSATDisjunction();
-  cout << "* Done with tests" << endl;
-
-  cout << "\nStarting teardown..." << endl;
-  FormulaFactory::TearDownFormulaFactory(formulaFactory);
-  SATResultFactory::TearDownSATResultFactory(satResFactory);
-  cout << "Done with teardown" << endl;
-
-  return 0;
 }

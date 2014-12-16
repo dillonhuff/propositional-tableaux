@@ -5,6 +5,11 @@ bool Formula::IsConjunction()
   return false;
 }
 
+bool Formula::IsDisjunction()
+{
+  return false;
+}
+
 bool Formula::IsNegation()
 {
   return false;

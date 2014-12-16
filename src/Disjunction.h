@@ -8,6 +8,7 @@ class Disjunction : public BinaryConnective
  public:
   Disjunction(Formula* left, Formula* right);
   
+  virtual bool IsDisjunction();
 };
 
 #endif

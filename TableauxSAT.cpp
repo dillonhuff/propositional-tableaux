@@ -11,7 +11,7 @@ void TableauxSAT::NegationSAT(Negation* neg)
 {
   Formula* innerF = neg->InnerFormula();
   AddAssignmentResult res;
-  if (m_satRes->TruthValue(innerF) == true) {
+  if (m_satRes->TruthValue(neg) == true) {
     res = m_satRes->AddAssignment(innerF, false);
   } else {
     res = m_satRes->AddAssignment(innerF, true);

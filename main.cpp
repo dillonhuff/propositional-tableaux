@@ -32,7 +32,7 @@ void singleVariable()
 {
   Variable* x = formulaFactory->MakeVariable("x");
   SATResult* satAsg = satResFactory->MakeSATResult();
-  satAsg->AddAssignment((Variable*) x, true);
+  satAsg->AddAssignment(x, true);
   testTableauxSATAssignment(x, satAsg, "single variable");
 }
 
@@ -41,6 +41,7 @@ void negatedVariable()
   Variable* x = formulaFactory->MakeVariable("x");
   Formula* negX = formulaFactory->MakeNegation(x);
   SATResult* satAsg = satResFactory->MakeSATResult();
+  satAsg->AddAssignment(negX, true);
   satAsg->AddAssignment(x, false);
   testTableauxSATAssignment(negX, satAsg, "negated variable");
 }

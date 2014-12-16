@@ -13,13 +13,13 @@ class SATResult
 {
  private:
   bool m_isUnsat;
-  map<Variable*, bool>* m_truthAssignment;
+  map<Formula*, bool>* m_truthAssignment;
 
  public:
   SATResult(AddAssignmentResult res);
   ~SATResult();
   const bool Equals(const SATResult* other);
-  AddAssignmentResult AddAssignment(Variable* v, bool truthVal);
+  AddAssignmentResult AddAssignment(Formula* f, bool truthVal);
 };
 
 #endif

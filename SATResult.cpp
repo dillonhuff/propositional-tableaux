@@ -12,7 +12,7 @@ SATResult::SATResult(AddAssignmentResult res)
   } else {
     cout << "ERROR: Unsupported AddAssignmentResult in SATResult::SATResult" << endl;
   }
-  m_truthAssignment = new map<Variable*, bool>();
+  m_truthAssignment = new map<Formula*, bool>();
 }
 
 SATResult::~SATResult()
@@ -26,22 +26,22 @@ const bool SATResult::Equals(const SATResult* other)
     return false;
   }
 
-  map<Variable*, bool>* thisTA = this->m_truthAssignment;
-  map<Variable*, bool>* otherTA = other->m_truthAssignment;
+  map<Formula*, bool>* thisTA = this->m_truthAssignment;
+  map<Formula*, bool>* otherTA = other->m_truthAssignment;
 
   return thisTA->size() == otherTA->size()
     && std::equal(thisTA->begin(), thisTA->end(), otherTA->begin());
 }
 
-AddAssignmentResult SATResult::AddAssignment(Variable* v, bool truthVal)
+AddAssignmentResult SATResult::AddAssignment(Formula* f, bool truthVal)
 {
-  if (m_truthAssignment->count(v) > 0) {
-    bool currentTruthVal = m_truthAssignment->find(v)->second;
+  if (m_truthAssignment->count(f) > 0) {
+    bool currentTruthVal = m_truthAssignment->find(f)->second;
     if (currentTruthVal != truthVal) {
       m_isUnsat = true;
       return UNSAT;
     }
   }
-  (*m_truthAssignment)[v] = truthVal;
+  (*m_truthAssignment)[f] = truthVal;
   return SAT;
 }

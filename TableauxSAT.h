@@ -5,12 +5,17 @@
 
 #include "Formula.h"
 #include "SATResult.h"
+#include "TableauxFormulas.h"
 
 class TableauxSAT
 {
  private:
   SATResult* m_satRes;
-  void RecursiveCheckSAT(Formula* f);
+  TableauxFormulas* m_remainingFormulas;
+
+  void NegationSAT(Negation* neg);
+  void ConjunctionSAT(Conjunction* conj);
+  void RecursiveCheckSAT();
 
  public:
   SATResult* CheckSAT(Formula* f);

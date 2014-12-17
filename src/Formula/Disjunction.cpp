@@ -15,7 +15,7 @@ bool Disjunction::IsDisjunction()
 
 bool Disjunction::operator==(Formula* other)
 {
-  if (other->IsConjunction()) {
+  if (other->IsDisjunction()) {
     Disjunction* d = (Disjunction*) other;
     return (this->Left() == d->Left()) && (this->Right() == d->Right());
   } else {

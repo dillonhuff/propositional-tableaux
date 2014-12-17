@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "Disjunction.h"
 
 Disjunction::Disjunction(Formula* left, Formula* right)
@@ -9,4 +11,21 @@ Disjunction::Disjunction(Formula* left, Formula* right)
 bool Disjunction::IsDisjunction()
 {
   return true;
+}
+
+bool Disjunction::operator==(Formula* other)
+{
+  if (other->IsConjunction()) {
+    Disjunction* d = (Disjunction*) other;
+    return (this->Left() == d->Left()) && (this->Right() == d->Right());
+  } else {
+    return false;
+  }
+}
+
+void Disjunction::PrettyPrint()
+{
+  Left()->PrettyPrint();
+  std::cout << " | ";
+  Right()->PrettyPrint();
 }

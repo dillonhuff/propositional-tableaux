@@ -13,7 +13,11 @@ class Negation : public Formula
 
   virtual bool IsNegation();
 
+  virtual bool operator==(Formula* other);
+
   Formula* InnerFormula();
+
+  virtual void PrettyPrint();
 };
 
 #endif

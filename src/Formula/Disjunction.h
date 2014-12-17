@@ -9,6 +9,10 @@ class Disjunction : public BinaryConnective
   Disjunction(Formula* left, Formula* right);
   
   virtual bool IsDisjunction();
+
+  virtual bool operator==(Formula* other);
+
+  virtual void PrettyPrint();
 };
 
 #endif

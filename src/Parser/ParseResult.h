@@ -9,6 +9,8 @@ class ParseResult
   Formula* m_parsedFormula;
 
  public:
+  ParseResult(Formula* f);
+
   Formula* ParsedFormula();
 };
 

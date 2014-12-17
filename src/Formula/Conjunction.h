@@ -9,6 +9,10 @@ class Conjunction : public BinaryConnective
   Conjunction(Formula* left, Formula* right);
 
   virtual bool IsConjunction();
+
+  virtual bool operator==(Formula* other);
+
+  virtual void PrettyPrint();
 };
 
 #endif

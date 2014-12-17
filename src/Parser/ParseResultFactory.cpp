@@ -4,7 +4,7 @@ ParseResultFactory* parseResultFactory;
 
 ParseResult* ParseResultFactory::MakeParseResult(Formula* f)
 {
-  ParseResult* newParseResult = new ParseResult();
+  ParseResult* newParseResult = new ParseResult(f);
   m_allParseResults->push_back(newParseResult);
   return newParseResult;
 }

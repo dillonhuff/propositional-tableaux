@@ -17,6 +17,10 @@ class Variable : public Formula
   ~Variable();
 
   virtual bool IsVariable();
+
+  virtual bool operator==(Formula* other);
+
+  virtual void PrettyPrint();
 };
 
 #endif

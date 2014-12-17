@@ -11,6 +11,10 @@ void checkCorrectFormula(Formula* correct, string toParse, string testName)
 {
   DIMACSParser parser;
   Formula* parseResult = parser.ParseCNF(toParse)->ParsedFormula();
+  correct->PrettyPrint();
+  cout << endl;
+  parseResult->PrettyPrint();
+  cout << endl;
   testResult(correct == parseResult, testName, "expected and actual formula don't match");
 }
 

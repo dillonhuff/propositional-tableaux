@@ -1,6 +1,6 @@
 CC	:= g++
 LINKER	:= $(CC)
-CFLAGS	:= -g -O3 -std=c++11 -Wall -Isrc/ -Itest
+CFLAGS	:= -g -O3 -std=c++11 -Wall -Isrc/ -Isrc/Formula -Isrc/Solver -Isrc/Parser -Itest
 
 SRC_HEADERS	:= $(shell find src -type f -name '*.h')
 SRC_SOURCES	:= $(shell find src -type f -name '*.cpp')
@@ -12,6 +12,9 @@ TEST_OBJECTS	:= $(patsubst test/%.cpp, obj/test/%.o, $(TEST_SOURCES))
 
 obj/src/%.o: src/%.cpp $(SRC_HEADERS)
 	@mkdir -p obj/src
+	@mkdir -p obj/src/Formula
+	@mkdir -p obj/src/Solver
+	@mkdir -p obj/src/Parser
 	$(CC) $(CFLAGS) -c $< -o $@
 
 obj/test/%.o: test/%.cpp $(SRC_HEADERS) $(SRC_OBJECTS) $(TEST_HEADERS)

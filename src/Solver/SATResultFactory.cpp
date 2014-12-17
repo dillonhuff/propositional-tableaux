@@ -16,19 +16,19 @@ SATResult* SATResultFactory::MakeUnSATResult()
   return newUnSATRes;
 }
 
-SATResultFactory* SATResultFactory::MakeSATResultFactory()
+void SATResultFactory::MakeSATResultFactory()
 {
   vector<SATResult*>* allResults = new vector<SATResult*>();
-  SATResultFactory* newFactory = new SATResultFactory();
-  newFactory->m_allSATResults = allResults;
-  return newFactory;
+  satResFactory = new SATResultFactory();
+  satResFactory->m_allSATResults = allResults;
 }
 
-void SATResultFactory::TearDownSATResultFactory(SATResultFactory* srf)
+void SATResultFactory::TearDownSATResultFactory()
 {
-  vector<SATResult*> allResults = *srf->m_allSATResults;
+  vector<SATResult*> allResults = *(satResFactory->m_allSATResults);
   for (auto result : allResults) {
     delete result;
   }
-  delete srf->m_allSATResults;
+  delete satResFactory->m_allSATResults;
+  delete satResFactory;
 }

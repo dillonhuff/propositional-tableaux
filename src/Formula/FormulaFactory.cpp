@@ -30,18 +30,18 @@ Disjunction* FormulaFactory::MakeDisjunction(Formula* left, Formula* right)
   return newDis;
 }
 
-FormulaFactory* FormulaFactory::MakeFormulaFactory()
+void FormulaFactory::MakeFormulaFactory()
 {
-  FormulaFactory* newFF = new FormulaFactory();
-  newFF->m_allFormulas = new vector<Formula*>();
-  return newFF;
+  formulaFactory = new FormulaFactory();
+  formulaFactory->m_allFormulas = new vector<Formula*>();
 }
 
-void FormulaFactory::TearDownFormulaFactory(FormulaFactory* ff)
+void FormulaFactory::TearDownFormulaFactory()
 {
-  vector<Formula*> formulas = *(ff->m_allFormulas);
+  vector<Formula*> formulas = *(formulaFactory->m_allFormulas);
   for (auto formula : formulas) {
       delete formula;
   }
-  delete ff->m_allFormulas;
+  delete formulaFactory->m_allFormulas;
+  delete formulaFactory;
 }

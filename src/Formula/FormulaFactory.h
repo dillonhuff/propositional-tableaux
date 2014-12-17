@@ -16,8 +16,8 @@ class FormulaFactory
   vector<Formula*>* m_allFormulas;
 
  public:
-  static FormulaFactory* MakeFormulaFactory();
-  static void TearDownFormulaFactory(FormulaFactory* ff);
+  static void MakeFormulaFactory();
+  static void TearDownFormulaFactory();
 
   Variable* MakeVariable(string name);
   Negation* MakeNegation(Formula* f);

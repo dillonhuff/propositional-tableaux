@@ -14,8 +14,8 @@ class SATResultFactory
   SATResult* MakeSATResult();
   SATResult* MakeUnSATResult();
 
-  static SATResultFactory* MakeSATResultFactory();
-  static void TearDownSATResultFactory(SATResultFactory* srf);
+  static void MakeSATResultFactory();
+  static void TearDownSATResultFactory();
 };
 
 extern SATResultFactory* satResFactory;

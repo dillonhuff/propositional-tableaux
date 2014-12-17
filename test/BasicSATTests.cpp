@@ -6,19 +6,10 @@
 #include "SATResult.h"
 #include "SATResultFactory.h"
 #include "TableauxSAT.h"
+#include "TestUtils.h"
 #include "Variable.h"
 
 using namespace std;
-
-void testResult(bool condition, string testName, string errorMessage)
-{
-  if (!condition) {
-    cout << "* ERROR in " << testName << ": " << errorMessage << endl;
-  } else {
-    cout << "* " << testName << " passed" << endl;
-  }
-  return;
-}
 
 void testTableauxSATAssignment(Formula* f, SATResult* expectedResult, string testName)
 {
@@ -121,6 +112,8 @@ void negatedUnSATDisjunction()
 
 void basicSATTests()
 {
+
+  cout << endl << "* ----- Starting basic SAT tests ----- *" << endl;
   singleVariable();
   negatedVariable();
   unSATNegation();
@@ -130,4 +123,5 @@ void basicSATTests()
   oneSATDisjunction();
   oneUnSATDisjunction();
   negatedUnSATDisjunction();
+  cout << "* ----- Done with basic SAT tests ----- *" << endl << endl;
 }

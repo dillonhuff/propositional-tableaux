@@ -2,6 +2,7 @@
 
 #include "BasicSATTests.h"
 #include "FormulaFactory.h"
+#include "ParserTests.h"
 #include "SATResultFactory.h"
 
 int main(int argv, char** argc)
@@ -13,7 +14,8 @@ int main(int argv, char** argc)
 
   cout << "* Running all tests..." << endl;
   basicSATTests();
-  cout << "* Done with tests" << endl;
+  parserTests();
+  cout << "* Done with all tests" << endl;
 
   cout << "\nStarting teardown..." << endl;
   FormulaFactory::TearDownFormulaFactory(formulaFactory);
